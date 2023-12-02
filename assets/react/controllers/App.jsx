@@ -1,11 +1,11 @@
 import React from "react";
-import SimpleSlider from "./SimpleSlider";
+import Rtl from "./SimpleSlider";
 
 
 function App(){
     return(
         <>
-            <SimpleSlider/>
+            <Rtl/>
         </>
         )
 

@@ -33,7 +33,7 @@ class Product
     private ?string $country = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $best_seller = null;
+    private ?bool $bestSeller = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
