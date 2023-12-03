@@ -120,12 +120,12 @@ class Product
 
     public function isBestSeller(): ?bool
     {
-        return $this->best_seller;
+        return $this->bestSeller;
     }
 
     public function setBestSeller(?bool $best_seller): static
     {
-        $this->best_seller = $best_seller;
+        $this->bestSeller = $best_seller;
 
         return $this;
     }

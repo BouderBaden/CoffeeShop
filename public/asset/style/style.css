@@ -237,7 +237,7 @@ body {
   font-size: 18px;
 }
 
-.flex{
+.flexxx{
   position: relative;
   top: 300px;
   display: flex;
@@ -646,7 +646,7 @@ width: 325px;
   align-items: center;
 }
 
-form{
+.form{
   margin-top: 20px;
   display: flex;
   flex-direction: column;
