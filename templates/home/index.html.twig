@@ -53,46 +53,22 @@
     <p class="popular">Our Popular Products</p>
     <a href="#" class="lien-produit"><span>See All Products</span></a>
 
-
+{% for product in products %}
     <div class="fond">
         <div class="niggerbox">
             <img src="http://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/coffeera/26d42fc0-cimg-01_1000000000000000000028.png">
         </div>
-        <h4 class="zumbacafe">Americano Coffee</h4>
-        <p class="cafecarnaval">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+        <h4 class="zumbacafe">{{ product.name }}</h4>
+        <p class="cafecarnaval">{{ product.description }}</p>
         <div class="prix">
             <div>
             <span class="dollar">$</span>
-            <span class="price">13,6</span>
+            <span class="price">{{ product.price }}</span>
             </div>
         </div>
     </div>
-        <div class="fond2">
-        <div class="niggerbox">
-            <img src="http://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/coffeera/26d42fc0-cimg-01_1000000000000000000028.png">
-        </div>
-        <h4 class="zumbacafe">Americano Coffee</h4>
-        <p class="cafecarnaval">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
-        <div class="prix">
-            <div>
-            <span class="dollar">$</span>
-            <span class="price">13,6</span>
-            </div>
-        </div>
-    </div>
-        <div class="fond3">
-            <div class="niggerbox">
-                <img src="http://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/coffeera/26d42fc0-cimg-01_1000000000000000000028.png">
-            </div>
-            <h4 class="zumbacafe">Americano Coffee</h4>
-            <p class="cafecarnaval">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
-            <div class="prix">
-            <div>
-            <span class="dollar">$</span>
-            <span class="price">13,6</span>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
+
 
     <div class="retour">
         <p class="test">Testimonial</p>

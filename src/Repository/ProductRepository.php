@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -24,6 +25,17 @@ class ProductRepository extends ServiceEntityRepository
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
+    /**
+     * @return Product[] Returns an array of Product objects
+     */
+        public function findByBestSellers() : array
+        {
+            return $this->createQueryBuilder('p')
+            ->andWhere('p.bestSeller = true')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+        }
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('p')

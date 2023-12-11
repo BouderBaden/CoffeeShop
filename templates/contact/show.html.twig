@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin | Contact{% endblock %}
+
+{% block body %}
+
+    <div class="relative overflow-x-auto flex justify-center items-center mt-2">
+        <table class="w-[80%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Nom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Prénom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Téléphone
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Message
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts  %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ contact.firstname }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ contact.lastname }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ contact.email }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ contact.phone }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ contact.message }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="navigation flex justify-center mb-8">{{ knp_pagination_render(contacts) }}</div>
+
+{% endblock %}

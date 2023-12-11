@@ -21,9 +21,32 @@ class BrandRepository extends ServiceEntityRepository
         parent::__construct($registry, Brand::class);
     }
 
-//    /**
-//     * @return Brand[] Returns an array of Brand objects
-//     */
+
+
+    /**
+    * @return array Returns an array of Brand objects
+     */
+
+    public function findBrandsWithProductCount(): array
+    {
+        // Obtient le gestionnaire d'entités pour la sous-requête
+        $entityManager = $this->getEntityManager();
+
+        // Crée une sous-requête pour compter les produits
+        $subQuery = $entityManager->createQueryBuilder()
+            ->select('COUNT(p.id)')
+            ->from('App\Entity\Product', 'p')
+            ->where('p.brand = b.id') // Assurez-vous que 'brand' est le bon nom de la propriété dans l'entité Product
+            ->getDQL();
+
+        // Crée la requête principale
+        return $this->createQueryBuilder('b')
+            ->addSelect('b, (' . $subQuery . ') as productCount')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('b')

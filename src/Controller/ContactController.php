@@ -35,11 +35,11 @@ class ContactController extends AbstractController
     #[Route('/admin/contact/', 'contact_show')]
     public function show(Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator) : Response
     {
-        $contactRepo = $entityManager->getRepository(ContactRepository::class);
+        $contactRepo = $entityManager->getRepository(Contact::class);
         $contact = $contactRepo->findAll();
         $data = $paginator->paginate($contact, $request->query->getInt('page', 1),10);
         return $this->render('contact/show.html.twig', [
-            'contact' => $data
+            'contacts' => $data
         ]);
     }
 }
