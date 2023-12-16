@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use PHPUnit\Util\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,9 +62,10 @@ class SliderController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $entityManager->flush();
             $this->addFlash('success', 'Les modifications du slider ont été enregistrées');
+
             return $this->redirectToRoute('slider_show');
         }
-        return $this->render('admin/sliderEdit.html.twig', [
+        return $this->render('slider/sliderEdit.html.twig', [
             'form' => $form->createView(),
             'slider' => $slider
         ]);
