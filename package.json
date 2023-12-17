@@ -28,7 +28,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "flowbite": "^2.2.0",
+        "flowbite": "^2.2.1",
         "react-slick": "^0.29.0",
         "slick-carousel": "^1.8.1"
     }

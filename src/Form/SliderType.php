@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SliderType extends AbstractType
 {
@@ -17,19 +18,31 @@ class SliderType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new Assert\Length(['max' => 255])
+                ]
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Contenu',
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new Assert\Length(['max' => 255])
+                ]
             ])
             ->add('button_link',UrlType::class, [
                 'label' => 'Lien du bouton',
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new Assert\Length(['max' => 255])
+                ]
             ])
             ->add('button_text', TextType::class, [
                 'label' => 'Texte du bouton',
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new Assert\Length(['max' => 255])
+                ]
             ]);
     }
 

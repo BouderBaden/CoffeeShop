@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Brand;
+use App\Entity\Product;
 use App\Form\BrandType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -48,18 +49,30 @@ class BrandController extends AbstractController
     public function delete(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
         $brandRepo = $entityManager->getRepository(Brand::class);
+        $productRepo = $entityManager->getRepository(Product::class);
+
         $brand = $brandRepo->find($id);
 
         if (!$brand) {
             throw $this->createNotFoundException('Aucune marque trouvé pour l\'id '.$id);
         }
 
+        // Check if the brand is associated with any products
+        $products = $productRepo->findBy(['brand' => $brand]);
+        if (count($products) > 0) {
+            // Prevent deletion and return a message
+            $this->addFlash('error', 'Suppression impossible: cette marque est associée à des produits.');
+            return $this->redirectToRoute('brand_show');
+        }
+
+        // Proceed with deletion if no products are associated
         $entityManager->remove($brand);
         $entityManager->flush();
 
-        $this->addFlash('success', 'La marque a été supprimé');
+        $this->addFlash('success', 'La marque a été supprimée.');
         return $this->redirectToRoute('brand_show');
     }
+
 
     #[Route('/admin/brand/update/{id}', 'brand_update')]
     public function update(Request $request, EntityManagerInterface $entityManager, $id) :Response
